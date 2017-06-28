@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    
+
+    <!-- Your app title -->
+    <title>My App</title>
+
+    <!-- This template defaults to the iOS CSS theme. To support both iOS and material design themes, see the Framework7 Tutorial at the link below:
+        http://www.idangero.us/framework7/tutorials/maintain-both-ios-and-material-themes-in-single-app.html
+     -->
+ 	<link href="https://fonts.googleapis.com/css?family=Jura|Lobster|Rajdhani|Roboto+Condensed" rel="stylesheet"> 
+    <link rel="stylesheet" href="lib/framework7/css/framework7.material.min.css">
+    <link rel="stylesheet" href="lib/framework7/css/framework7.material.colors.min.css">
+      <link rel="stylesheet" href="css/material-icons.css">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="theme-red" onload="startTime()">
+      <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-reveal panelgrey">
+		<a href="index.html"><img src="img/222.png" width="100%"></a>
+      <div class="content-block">
+
+ 
+<div class="list-block accordion-list">
+  <ul>
+       <li class="accordion-item">
+        <div class="item-inner">
+         <a href="searchbar.html" class="item-content item-link">
+            	<i class="material-icons">search</i> 
+            	 Поиск  
+         </a>
+         </div>
+   
+		
+     
+    </li>
+    <li class="accordion-item">
+       <a href="#" class="item-content item-link">
+        <div class="item-inner">
+          <div class="item-title">Пробоотборники</div>
+        </div></a>
+      <div class="accordion-item-content">
+        <div class="content-block">
+			<p>- <a href="pgolist.html" data-ignore-cache="true" class="graylink">Газа</a></p>
+			<p>-<a href="neft.html" data-ignore-cache="true" class="graylink">Нефтепродуктов</a></p>
+			<p>-<a href="kraski.html" data-ignore-cache="true" class="graylink"> Красок</a></p>
+			<p>-<a href="agress.html" data-ignore-cache="true" class="graylink"> Агрессивных сред</a></p>
+			<p>-<a href="eda.html" data-ignore-cache="true" class="graylink"> Пищевых продуктов</a></p>
+        </div>
+      </div>
+    </li>
+    <li class="accordion-item">
+       <a href="contacts.html" class="item-content item-link">
+        <div class="item-inner">
+          <div class="item-title">
+             Вискозиметры
+          </div>
+        </div>
+        </a>
+    </li>
+    <li class="accordion-item">                  
+        <a href="contacts.html" class="item-content item-link">
+			<div class="item-inner">
+			  <div class="item-title">
+				<i class="icon icon-help_fill"></i>Запорная арматура
+			  </div>
+			</div>
+        </a>
+    </li>
+    <li class="accordion-item">
+        <a href="#about" class="item-content item-link">
+			<div class="item-inner">
+				<div class="item-title">
+				  Микрошприцы
+				</div>          
+			 </div>
+         </a>       
+    </li>
+
+  </ul>
+</div>
+      <div class="content-block">
+		       
+         <a href="color-themes.html" >
+             <div class="item-content">       
+                        <div class="item-inner">
+							<div class="item-title"><b>Калькулятор ВЗ-246</b></div>
+                        </div>
+             </div>
+         </a>
+         <br>
+     <div> <i class="material-icons icon-settings">help_outline</i>Справка</div>
+      </div>
+       <p> 
+      
+       </p>
+      </div>
+    </div>
+    
+<script language="JavaScript" type="text/javascript">
+//объявляем переменные
+var base = 60; 
+var clocktimer,dateObj,dh,dm,ds,ms; 
+var readout=''; 
+var h=1,m=1,tm=1,s=0,ts=0,ms=0,init=0; 
+//функция для очистки поля
+function ClearСlock() { 
+	clearTimeout(clocktimer); 
+	h=1;m=1;tm=1;s=0;ts=0;ms=0; 
+	init=0;
+	readout='00:00:00.00'; 
+	document.MyForm.stopwatch.value=readout; 
+} 
+//функция для старта секундомера
+function StartTIME() { 
+	var cdateObj = new Date(); 
+	var t = (cdateObj.getTime() - dateObj.getTime())-(s*1000); 
+	if (t>999) { s++; } 
+	if (s>=(m*base)) { 
+		ts=0; 
+		m++; 
+	} else { 
+		ts=parseInt((ms/100)+s); 
+		if(ts>=base) { ts=ts-((m-1)*base); } 
+	} 
+	if (m>(h*base)) { 
+		tm=1; 
+		h++; 
+	} else { 
+		tm=parseInt((ms/100)+m); 
+		if(tm>=base) { tm=tm-((h-1)*base); } 
+	} 
+	ms = Math.round(t/10); 
+	if (ms>99) {ms=0;} 
+	if (ms==0) {ms='00';} 
+	if (ms>0&&ms<=9) { ms = '0'+ms; } 
+	if (ts>0) { ds = ts; if (ts<10) { ds = '0'+ts; }} else { ds = '00'; } 
+	dm=tm-1; 
+	if (dm>0) { if (dm<10) { dm = '0'+dm; }} else { dm = '00'; } 
+	dh=h-1; 
+	if (dh>0) { if (dh<10) { dh = '0'+dh; }} else { dh = '00'; } 
+	readout = dh + ':' + dm + ':' + ds + '.' + ms; 
+	document.MyForm.stopwatch.value = readout;
+        
+    var xx = Number.parseInt(ds);
+    xx=xx+20+Math.sin(xx);
+    document.MyForm.stopwatch2x.value = xx;
+    
+    var yy = Number.parseInt(ms);
+    if(yy==60){
+    yy=yy+100;
+    document.MyForm.stopwatch3x.value = yy;
+    }
+    
+	clocktimer = setTimeout("StartTIME()",1); 
+            
+} 
+//Функция запуска и остановки
+function StartStop() { 
+	if (init==0){ 
+		ClearСlock();
+		dateObj = new Date(); 
+		StartTIME(); 
+		init=1; 
+	} else { 
+		clearTimeout(clocktimer);
+		init=0;
+	} 
+} 
+function sss1(){
+	alert("Как дела?");
+}		
+</script> 
+   
+    <!-- Views -->
+    <div class="views">
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+            <!-- Top Navbar-->
+            <div class="navbar">
+                <div class="navbar-inner">
+                   <div class="left"></div>
+                    <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+                    <!--<div class="center sliding">Лабораторные Технологии</div>-->
+                    <div class="right">
+                        <!--
+                          Right link contains only icon - additional "icon-only" class
+                          Additional "open-panel" class tells app to open panel when we click on this link
+                        -->
+                        <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+            <div class="pages navbar-through toolbar-through">
+                <!-- Page, "data-page" contains page name -->
+                <div data-page="index" class="page">
+                    <!-- Scrollable page content -->
+                   
+                            <!-- Link to another page -->
+              <br><br><div class="page-content">
+              <div class="content-block-title">ООО "Лабораторные Технологии"</div>
+              <div class="content-block">
+                <div class="content-block">
+                  <p>
+                  	Наша организация ООО "Лабораторные Технологии" предлагает своим клиентам такое оборудование, как микрошприцы, различные пробоотборники и оборудование к ним, емкости из нержавеющей стали. 
+                  	  
+                  </p>
+               
+              
+<form name=MyForm>   
+	<input type=button value="Обнулить" onclick="ClearСlock()">  <br>
+	<input name=stopwatch size=20 value="00:00:00.00" class="redcolor">  <br>
+	<p>
+        <input type=button value="Запуск/Остановить" onclick="StartStop()" class="button button-big"><br></p>
+	<input name=stopwatch2x><br>
+	
+	<input name=stopwatch3x>
+	<div class="list-block">
+  <ul>
+    <!-- Single radio input -->
+    <li>
+      <label class="label-radio item-content">
+        <!-- Checked by default -->
+        <input type="radio" name="my-radio" value="Books" checked="checked">
+        <div class="item-media">
+          <i class="icon icon-form-radio"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title">Books</div>
+        </div>
+      </label>
+    </li>
+    <!-- Another radio input -->
+    <li>
+      <label class="label-radio item-content">
+        <input type="radio" name="my-radio" value="Movies">
+        <div class="item-media">
+          <i class="icon icon-form-radio"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title">Movies</div>
+        </div>
+      </label>
+    </li>
+    ...
+  </ul>
+</div>  
+	
+	
+	<i class="icon icon-timer_fill "></i> 
+	<i class="f7-icons">home</i>
+	<i class="icon tabbar-demo-icon-1"></i>
+</form> 
+               
+      <button type="button" value="333" onclick="sss1()">ffff11111</button>            
+  <a href="index2.html">fdfdfdf</a>     
+                
+             
+                  
+                </div>
+              </div>
+                          
+                          
+                          
+                        </div>
+                
+				</div></div>
+           
+                    
+           
+        
+        </div>
+    </div>
+
+    <script type="text/javascript" src="cordova.js"></script>
+   <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
+    <script type="text/javascript" src="js/my-app.js"></script>
+ 
+
+</body>
+
+</html>
